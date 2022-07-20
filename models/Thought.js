@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 const moment = require('moment');
 
 // reaction schema 
@@ -11,16 +11,14 @@ const ReactionSchema = new Schema({
 
     reactionBody: {
         type: String,
-        required: "Body is required",
+        required: "A Reaction is required",
         maxLength: 280,
     },
 
-    username: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    ],
+    username: {
+        type: String,
+        required: "Username is required",
+    },
 
     createdAt: {
         type: Date,
@@ -38,7 +36,7 @@ const ReactionSchema = new Schema({
 const ThoughtSchema = new Schema({
     thoughtText: {
         type: String,
-        required: true,
+        required: 'You must have at least one character in your thought.',
         maxLength: 280,
         minLength: 1
     },
@@ -49,12 +47,10 @@ const ThoughtSchema = new Schema({
         get: (createdAtVal) => moment(createdAtVal).format('MMMM Do, YYYY [at] h:mm:ss a')
       },
 
-    username: [{
-        
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        
-    }],
+    username: {
+        type: String,
+        required: 'Username is required'
+    },
 
     reactions: [ReactionSchema]
     },
