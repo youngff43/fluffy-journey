@@ -17,7 +17,8 @@ const ReactionSchema = new Schema({
 
     username: {
         type: String,
-        required: "Username is required",
+        ref: 'User',
+        required: 'You must have a username'
     },
 
     createdAt: {
@@ -49,6 +50,7 @@ const ThoughtSchema = new Schema({
 
     username: {
         type: String,
+        ref: 'User',
         required: 'Username is required'
     },
 
