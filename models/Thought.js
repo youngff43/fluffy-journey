@@ -5,13 +5,12 @@ const moment = require('moment');
 const ReactionSchema = new Schema({
     reactionId: {
         type: Schema.Types.ObjectId,
-        unique: true,
         default: () => new Types.ObjectId()
     },
 
     reactionBody: {
         type: String,
-        required: "A Reaction is required",
+        required: "A reaction is required",
         maxLength: 280,
     },
 
@@ -30,7 +29,8 @@ const ReactionSchema = new Schema({
   {
     toJSON: {
         getters: true
-    }
+    },
+    id: false
   });
 
 // thought schema 
@@ -61,7 +61,6 @@ const ThoughtSchema = new Schema({
         virtuals: true,
         getters: true
     },
-    
     id: false
   })
 
